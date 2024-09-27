@@ -4,7 +4,7 @@ from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
 import json
 import os
-from typing import Optional
+from typing import Optional, List
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -28,48 +28,46 @@ def load_data():
 
 data = load_data()
 
-
-def get_average_price(sizes):
-    if not sizes:
-        return 0
-    total_price = sum(size['price'] for size in sizes)
-    return total_price / len(sizes)
-
-
 @app.get("/catalog", response_class=JSONResponse)
-async def get_pizzas(
-        # category: Optional[int] = Query(None, description="Категория продукта"),
-        sort_by: Optional[int] = Query(None, description="Сортировать по: title, rating, price"),
+async def get_products(
+        category: Optional[str] = Query(None, description="Категория продукта"),
+        brand: Optional[str] = Query(None, description="Бренд продукта"),
+        designer: Optional[str] = Query(None, description="Дизайнер продукта"),
+        trending_now: Optional[bool] = Query(None, description="Трендовый товар"),
+        sort_by: Optional[int] = Query("title", description="Сортировать по: title, rating, price"),
         order: Optional[str] = Query("asc", description="Порядок сортировки: asc (по возрастанию), desc (по убыванию)"),
         page: Optional[int] = Query(1, description="Номер страницы"),
-        limit: Optional[int] = Query(8, description="Количество элементов на странице")
+        limit: Optional[int] = Query(9, description="Количество элементов на странице"),
+        size: Optional[List[str]] = Query(None, description="Фильтрация по размеру (например: S, M, L)")
 ):
-    # Фильтрация по категории
-    # if category is not None and category > 0:
-    #     filtered_data = [pizza for pizza in data if category is None or pizza["category"] == category]
-    # else:
-    #     filtered_data = data
-
     filtered_data = data
 
+    # Фильтрация по категории
+    if category:
+        filtered_data = [item for item in filtered_data if item["category"].lower() == category.lower()]
+
+    # Фильтрация по бренду
+    if brand:
+        filtered_data = [item for item in filtered_data if item["brand"].lower() == brand.lower()]
+
+    # Фильтрация по дизайнеру
+    if designer:
+        filtered_data = [item for item in filtered_data if item["designer"].lower() == designer.lower()]
+
+    # Фильтрация по трендовым товарам
+    if trending_now is not None:
+        filtered_data = [item for item in filtered_data if item.get("trending_now") == trending_now]
+
+    # Фильтрация по размеру
+    if size:
+        filtered_data = [item for item in filtered_data if any(s in item['size'] for s in size)]
+
     # Сортировка
-    sort_fields = {
-        # 0: "rating",  # Cортировка по популярности
-        1: "price",  # Сортировка по цене
-        2: "title"  # Сортировка по алфавиту
-    }
-    field_to_sort_by = sort_fields.get(sort_by)
+    valid_sort_fields = ["title", "price"]
+    if sort_by not in valid_sort_fields:
+        sort_by = "title"
 
-    # if field_to_sort_by in {"title", "rating", "price"}:
-    #     reverse_order = (order == "desc")
-    #     filtered_data.sort(key=lambda x: x[field_to_sort_by], reverse=reverse_order)
-
-    # if field_to_sort_by == "average_price":
-    #     filtered_data.sort(key=lambda x: get_average_price(x["sizes"]), reverse=(order == "desc"))
-    # elif field_to_sort_by in {"title", "rating"}:
-    #     filtered_data.sort(key=lambda x: x[field_to_sort_by], reverse=(order == "desc"))
-
-    filtered_data.sort(key=lambda x: x[field_to_sort_by], reverse=(order == "desc"))
+    filtered_data.sort(key=lambda x: x[sort_by], reverse=(order == "desc"))
 
     # Пагинация
     total_items = len(filtered_data)
@@ -87,7 +85,7 @@ async def get_pizzas(
 
 
 @app.get("/product", response_class=JSONResponse)
-async def get_pizza_by_id(
+async def get_product_by_id(
         id: Optional[int] = Query(None, description="ID продукта")
 ):
     product = next((item for item in data if item["id"] == id), None)
@@ -98,7 +96,7 @@ async def get_pizza_by_id(
 
 @app.get("/fetured", response_class=JSONResponse)
 async def get_fetured_items():
-    fetured_items = next((item for item in data if item["fetured"] == True), None)
+    fetured_items = [item for item in data if item["fetured"]]
     if fetured_items is None:
         return JSONResponse(content={"message": "Items not found"}, status_code=404)
     return fetured_items
