@@ -28,6 +28,7 @@ def load_data():
 
 data = load_data()
 
+
 @app.get("/catalog", response_class=JSONResponse)
 async def get_products(
         category: Optional[str] = Query(None, description="Категория продукта"),
@@ -38,7 +39,10 @@ async def get_products(
         order: Optional[str] = Query("asc", description="Порядок сортировки: asc (по возрастанию), desc (по убыванию)"),
         page: Optional[int] = Query(1, description="Номер страницы"),
         limit: Optional[int] = Query(9, description="Количество элементов на странице"),
-        size: Optional[List[str]] = Query(None, description="Фильтрация по размеру (например: S, M, L)")
+        size: Optional[List[str]] = Query(None, description="Фильтрация по размеру (например: S, M, L)"),
+        type: Optional[str] = Query(None, description="Тип продукта (women, men, kids, accessories)"),
+        min_price: Optional[float] = Query(None, description="Минимальная цена"),
+        max_price: Optional[float] = Query(None, description="Максимальная цена")
 ):
     filtered_data = data
 
@@ -61,6 +65,17 @@ async def get_products(
     # Фильтрация по размеру
     if size:
         filtered_data = [item for item in filtered_data if any(s in item['size'] for s in size)]
+
+    # Фильтрация по типу
+    if type:
+        filtered_data = [item for item in filtered_data if item["type"].lower() == type.lower()]
+
+    # Фильтрация по цене
+    if min_price is not None:
+        filtered_data = [item for item in filtered_data if item["price"] >= min_price]
+
+    if max_price is not None:
+        filtered_data = [item for item in filtered_data if item["price"] <= max_price]
 
     # Сортировка
     valid_sort_fields = ["title", "price"]

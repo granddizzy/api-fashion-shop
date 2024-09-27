@@ -11,7 +11,8 @@
     "category": "dresses",
     "brand": "Lunar Fashion",
     "designer": "Anna Smith",
-    "trending_now": true
+    "trending_now": true,
+    "type": "women"
   },
   {
     "id": 2,
@@ -25,7 +26,8 @@
     "category": "jackets & coats",
     "brand": "Breeze Wear",
     "designer": "Mark Johnson",
-    "trending_now": false
+    "trending_now": false,
+    "type": "men"
   },
   {
     "id": 3,
@@ -39,7 +41,8 @@
     "category": "blazers",
     "brand": "Star Collection",
     "designer": "Julia Roberts",
-    "trending_now": true
+    "trending_now": true,
+    "type": "accessories"
   },
   {
     "id": 4,
@@ -53,7 +56,8 @@
     "category": "skirts",
     "brand": "Golden Trend",
     "designer": "Sophia Lee",
-    "trending_now": false
+    "trending_now": false,
+    "type": "kids"
   },
   {
     "id": 5,
@@ -67,7 +71,8 @@
     "category": "sweaters & knits",
     "brand": "EcoWear",
     "designer": "Tom Baker",
-    "trending_now": true
+    "trending_now": true,
+    "type": "women"
   },
   {
     "id": 6,
@@ -81,7 +86,8 @@
     "category": "jackets & coats",
     "brand": "Crimson Co.",
     "designer": "Linda Grey",
-    "trending_now": false
+    "trending_now": false,
+    "type": "men"
   },
   {
     "id": 7,
@@ -95,7 +101,8 @@
     "category": "tops",
     "brand": "Horizon Wear",
     "designer": "Alice Cooper",
-    "trending_now": true
+    "trending_now": true,
+    "type": "women"
   },
   {
     "id": 8,
@@ -109,7 +116,8 @@
     "category": "hoodies & sweatshirts",
     "brand": "Forest Apparel",
     "designer": "Steve Jobs",
-    "trending_now": false
+    "trending_now": false,
+    "type": "men"
   },
   {
     "id": 9,
@@ -123,7 +131,8 @@
     "category": "pants",
     "brand": "Azure Clothing",
     "designer": "Marie Curie",
-    "trending_now": true
+    "trending_now": true,
+    "type": "women"
   },
   {
     "id": 10,
@@ -137,7 +146,8 @@
     "category": "dresses",
     "brand": "Lemon Fashion",
     "designer": "Ella Fitzgerald",
-    "trending_now": false
+    "trending_now": false,
+    "type": "kids"
   },
   {
     "id": 11,
@@ -151,7 +161,8 @@
     "category": "sweaters & knits",
     "brand": "Tangerine Co.",
     "designer": "John Lennon",
-    "trending_now": true
+    "trending_now": true,
+    "type": "women"
   },
   {
     "id": 12,
@@ -165,7 +176,8 @@
     "category": "jackets & coats",
     "brand": "Ruby Wear",
     "designer": "David Bowie",
-    "trending_now": false
+    "trending_now": false,
+    "type": "men"
   },
   {
     "id": 13,
@@ -179,7 +191,8 @@
     "category": "blouses",
     "brand": "Rose Collection",
     "designer": "Mary Shelley",
-    "trending_now": true
+    "trending_now": true,
+    "type": "women"
   },
   {
     "id": 14,
@@ -193,7 +206,8 @@
     "category": "jackets & coats",
     "brand": "Emerald Fashion",
     "designer": "Fiona Apple",
-    "trending_now": false
+    "trending_now": false,
+    "type": "men"
   },
   {
     "id": 15,
@@ -207,7 +221,8 @@
     "category": "accessories",
     "brand": "Sapphire Goods",
     "designer": "Kurt Cobain",
-    "trending_now": true
+    "trending_now": true,
+    "type": "accessories"
   },
   {
     "id": 16,
@@ -218,65 +233,130 @@
     "color": "Yellow",
     "size": ["S", "M", "L"],
     "fetured": false,
-    "category": "sweaters & knits",
-    "brand": "Golden Apparel",
-    "designer": "Joni Mitchell",
-    "trending_now": false
+    "category": "cardigans",
+    "brand": "Golden Knits",
+    "designer": "Frida Kahlo",
+    "trending_now": false,
+    "type": "women"
   },
   {
     "id": 17,
     "photo": "https://lepihov.by/img-fashion-shop/fetured5.png",
-    "title": "Tangerine Breeze Shorts",
-    "description": "Light and comfortable shorts for summer activities.",
-    "price": "45.00",
-    "color": "Orange",
+    "title": "Coral Reef Swim Trunks",
+    "description": "Stylish swim trunks for a perfect day at the beach.",
+    "price": "42.00",
+    "color": "Coral",
     "size": ["M", "L"],
     "fetured": false,
-    "category": "shorts",
-    "brand": "Tangerine Style",
-    "designer": "Elvis Presley",
-    "trending_now": true
+    "category": "swimwear",
+    "brand": "Coral Swim",
+    "designer": "Jimmy Buffett",
+    "trending_now": true,
+    "type": "men"
   },
   {
     "id": 18,
     "photo": "https://lepihov.by/img-fashion-shop/fetured6.png",
-    "title": "Navy Tide Swimwear",
-    "description": "Trendy swimwear for beach lovers.",
-    "price": "59.99",
-    "color": "Blue",
-    "size": ["L", "XL"],
+    "title": "Rainbow Breeze Tank Top",
+    "description": "A fun and colorful tank top for kids.",
+    "price": "29.99",
+    "color": "Multicolor",
+    "size": ["S", "M"],
     "fetured": false,
-    "category": "swimwear",
-    "brand": "Navy Swim",
-    "designer": "Beyoncé",
-    "trending_now": false
+    "category": "tank tops",
+    "brand": "Rainbow Kids",
+    "designer": "Minnie Mouse",
+    "trending_now": false,
+    "type": "kids"
   },
   {
     "id": 19,
     "photo": "https://lepihov.by/img-fashion-shop/fetured1.png",
-    "title": "Aqua Wave Dress",
-    "description": "A breezy dress perfect for a day out by the beach.",
-    "price": "78.00",
-    "color": "Light Blue",
-    "size": ["S", "M"],
+    "title": "Sunset Overdrive Backpack",
+    "description": "A spacious backpack perfect for school or travel.",
+    "price": "65.00",
+    "color": "Orange",
+    "size": ["One Size"],
     "fetured": false,
-    "category": "dresses",
-    "brand": "Wave Wear",
-    "designer": "Rihanna",
-    "trending_now": true
+    "category": "accessories",
+    "brand": "Sunset Goods",
+    "designer": "Pablo Picasso",
+    "trending_now": true,
+    "type": "accessories"
   },
   {
     "id": 20,
     "photo": "https://lepihov.by/img-fashion-shop/fetured2.png",
-    "title": "Copper Glaze Boots",
-    "description": "Stylish boots that add an edge to any outfit.",
-    "price": "109.99",
-    "color": "Brown",
+    "title": "Ice Blue Sneakers",
+    "description": "Trendy sneakers for a comfortable and stylish look.",
+    "price": "75.00",
+    "color": "Blue",
     "size": ["M", "L"],
     "fetured": false,
-    "category": "footwear",
-    "brand": "Copper Style",
-    "designer": "Kanye West",
-    "trending_now": false
+    "category": "shoes",
+    "brand": "Icewear",
+    "designer": "Elvis Presley",
+    "trending_now": false,
+    "type": "men"
+  },
+  {
+    "id": 21,
+    "photo": "https://lepihov.by/img-fashion-shop/fetured3.png",
+    "title": "Velvet Touch Jumpsuit",
+    "description": "A luxurious jumpsuit for elegant evenings.",
+    "price": "99.99",
+    "color": "Black",
+    "size": ["S", "M"],
+    "fetured": false,
+    "category": "jumpsuits",
+    "brand": "Velvet Line",
+    "designer": "Audrey Hepburn",
+    "trending_now": true,
+    "type": "women"
+  },
+  {
+    "id": 22,
+    "photo": "https://lepihov.by/img-fashion-shop/fetured4.png",
+    "title": "Sunny Day Hat",
+    "description": "A stylish hat for sunny outdoor adventures.",
+    "price": "29.00",
+    "color": "Beige",
+    "size": ["One Size"],
+    "fetured": false,
+    "category": "hats",
+    "brand": "Sunny Goods",
+    "designer": "Coco Chanel",
+    "trending_now": false,
+    "type": "accessories"
+  },
+  {
+    "id": 23,
+    "photo": "https://lepihov.by/img-fashion-shop/fetured5.png",
+    "title": "Boys' Adventure Shorts",
+    "description": "Comfortable shorts for boys who love to play.",
+    "price": "35.00",
+    "color": "Blue",
+    "size": ["M", "L"],
+    "fetured": false,
+    "category": "shorts",
+    "brand": "Adventure Kids",
+    "designer": "Peter Pan",
+    "trending_now": true,
+    "type": "kids"
+  },
+  {
+    "id": 24,
+    "photo": "https://lepihov.by/img-fashion-shop/fetured6.png",
+    "title": "Classic Leather Belt",
+    "description": "A timeless leather belt to complete any outfit.",
+    "price": "48.50",
+    "color": "Black",
+    "size": ["M", "L"],
+    "fetured": false,
+    "category": "accessories",
+    "brand": "Classic Goods",
+    "designer": "Charles Dickens",
+    "trending_now": false,
+    "type": "men"
   }
 ]
