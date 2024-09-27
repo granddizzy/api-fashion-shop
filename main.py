@@ -1,6 +1,6 @@
 import math
 
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Path
 from fastapi.responses import JSONResponse
 import json
 import os
@@ -64,17 +64,17 @@ async def get_products(
 
     # Фильтрация по размеру
     if size:
-        filtered_data = [item for item in filtered_data if any(s in item['size'] for s in size)]
+        filtered_data = [item for item in filtered_data if any(s in item['sizes'] for s in size)]
 
     # Фильтрация по типу
     if type:
         filtered_data = [item for item in filtered_data if item["type"].lower() == type.lower()]
 
     # Фильтрация по цене
-    if min_price is not None:
+    if min_price is not None and min_price > 0:
         filtered_data = [item for item in filtered_data if item["price"] >= min_price]
 
-    if max_price is not None:
+    if max_price is not None and max_price > 0:
         filtered_data = [item for item in filtered_data if item["price"] <= max_price]
 
     # Сортировка
@@ -99,9 +99,9 @@ async def get_products(
     }
 
 
-@app.get("/product", response_class=JSONResponse)
+@app.get("/catalog/{id}", response_class=JSONResponse)
 async def get_product_by_id(
-        id: Optional[int] = Query(None, description="ID продукта")
+        id: int = Path(..., description="ID продукта")
 ):
     product = next((item for item in data if item["id"] == id), None)
     if product is None:
