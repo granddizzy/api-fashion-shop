@@ -4,7 +4,7 @@ from fastapi import FastAPI, Query, Path
 from fastapi.responses import JSONResponse
 import json
 import os
-from typing import Optional, List
+from typing import Optional, List, Dict
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -94,7 +94,7 @@ async def get_products(
     return {
         "total": total_pages,
         "page": page,
-        "limit": limit,
+        # "limit": limit,
         "data": paginated_data
     }
 
@@ -115,3 +115,56 @@ async def get_fetured_items():
     if fetured_items is None:
         return JSONResponse(content={"message": "Items not found"}, status_code=404)
     return fetured_items
+
+
+@app.get("/brands", response_class=JSONResponse)
+async def get_brands():
+    brands = list(set(item["brand"] for item in data))
+    if brands is None:
+        return JSONResponse(content={"message": "Brands not found"}, status_code=404)
+    return brands
+
+
+@app.get("/designers", response_class=JSONResponse)
+async def get_designers():
+    brands = list(set(item["designer"] for item in data))
+    if brands is None:
+        return JSONResponse(content={"message": "Designers not found"}, status_code=404)
+    return brands
+
+
+@app.get("/categories", response_class=JSONResponse)
+async def get_categories():
+    categories = list(set(item["category"].lower() for item in data if item.get("category")))
+
+    if categories is None:
+        return JSONResponse(content={"message": "Categories not found"}, status_code=404)
+    return categories
+
+
+@app.get("/types", response_class=JSONResponse)
+async def get_categories():
+    types = list(set(item["type"] for item in data))
+    if types is None:
+        return JSONResponse(content={"message": "Types not found"}, status_code=404)
+    return types
+
+
+@app.get("/categories_by_types", response_class=JSONResponse)
+async def get_categories_by_types():
+    categories_by_type: Dict[str, List[str]] = {}
+
+    for item in data:
+        category_type = item["type"]
+        category_name = item["category"]
+
+        if category_type not in categories_by_type:
+            categories_by_type[category_type] = []
+
+        if category_name not in categories_by_type[category_type]:
+            categories_by_type[category_type].append(category_name)
+
+    if not categories_by_type:
+        return JSONResponse(content={"message": "Types and categories not found"}, status_code=404)
+
+    return categories_by_type
